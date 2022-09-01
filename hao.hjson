@@ -1,0 +1,42 @@
+{
+    "Log":{
+        "Path":"logs/error.log",
+        // EMERG = 1, ALERT, CRIT, ERROR, WARN, NOTICE, INFO, DEBUG
+        "Level":8
+    },
+    "Process":{
+        // 子进程个数
+        "WorkerProcesses":2,
+        // 是否以守护进程方式运行
+        "Daemon":true,
+        // 消息线程池中线程的数量,120?
+        "ProcMsgRecvWorkerThreadCount":10
+    },
+    "Net":{
+        "Listen":[
+            {
+                "Any":true,
+                "ListenPort":80,
+                "ipv4":true
+            }
+        ],
+        // 每个worker进程允许的连接数
+        "WorkerConnections":2048,
+        // 多少秒后进程socket的回收
+        "RecycleConnectionWaitTime":150,
+        // 是否开启踢人
+        "WaitTimeEnable":true,
+        // 心跳包超时时间,单位是秒
+        "MaxWaitTime":10,
+        // 达到指定时间，直接踢人
+        "TimeOutKick":false
+    },
+    "Security":{
+        // 是否开启flood攻击检测
+        "FloodAttackKickEnable":true,
+        // flood攻击检测间隔时间, 单位是毫秒
+        "FloodTimeInterval":100,
+        // flood攻击间隔时间内检测次数，如果100毫秒内收到的数据包数量大于10个，则主动关闭
+        "FloodKickCounter":10
+    }
+}
